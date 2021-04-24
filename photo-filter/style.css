@@ -1,18 +1,46 @@
+/* variables */
+
+:root {
+  --blur: 0px;
+  --invert: 0%;
+  --sepia: 0%;
+  --saturate: 100%;
+  --hue: 0deg;
+}
+
+/* filters */
+
+img {
+  height: 100%;
+  width: 100%;
+  max-height: 520px;
+  max-width: 830px;
+  object-fit: contain;
+  filter: blur(var(--blur, 0px)) invert(var(--invert, 0%))
+    sepia(var(--sepia, 0%)) saturate(var(--saturate, 100%))
+    hue-rotate(var(--hue, 0deg));
+}
+
+/* common */
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   user-select: none;
 }
+
 a:focus {
   outline: 0;
 }
+
 body {
   min-height: 100vh;
   background-color: #313940;
-  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
   overflow-x: hidden;
 }
+
 .header {
   text-align: center;
   width: 100%;
@@ -26,6 +54,7 @@ body {
   font-weight: 300;
   color: #fff;
 }
+
 .main {
   min-height: calc(100vh - 110px);
   padding: 58px 10px 0;
@@ -36,6 +65,7 @@ body {
   max-width: 1140px;
   margin: 0 auto;
 }
+
 label:not(.btn) {
   display: block;
   position: relative;
@@ -44,6 +74,7 @@ label:not(.btn) {
   color: #a2abb3;
   font-size: 16px;
 }
+
 label:hover {
   color: #cbd5de;
 }
@@ -53,7 +84,7 @@ label:hover output {
 label:active output {
   color: #cbd5de;
 }
-input[type='range'] {
+input[type="range"] {
   display: block;
   appearance: none;
   height: 3px;
@@ -65,7 +96,7 @@ input[type='range'] {
   cursor: pointer;
   width: 100%;
 }
-input[type='range']::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   width: 25px;
   height: 25px;
@@ -75,7 +106,7 @@ input[type='range']::-webkit-slider-thumb {
   cursor: pointer;
   transition: 0.3s;
 }
-label:hover input[type='range']::-webkit-slider-thumb {
+label:hover input[type="range"]::-webkit-slider-thumb {
   background-color: #00c9b7;
 }
 output {
@@ -112,7 +143,7 @@ output {
   background-color: #454c53;
   border: 0;
   border-radius: 2px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 16px;
   font-weight: 300;
   color: #fff;
@@ -161,23 +192,7 @@ output {
   width: 100%;
   max-width: 60%;
 }
-:root {
-  --blur: 0px;
-  --invert: 0%;
-  --sepia: 0%;
-  --saturate: 100%;
-  --hue: 0deg;
-}
-img {
-  height: 100%;
-  width: 100%;
-  max-height: 520px;
-  max-width: 830px;
-  object-fit: contain;
-  filter: blur(var(--blur, 0px)) invert(var(--invert, 0%))
-    sepia(var(--sepia, 0%)) saturate(var(--saturate, 100%))
-    hue-rotate(var(--hue, 0deg));
-}
+
 .fullscreen {
   position: fixed;
   top: 120px;
@@ -190,13 +205,13 @@ img {
   background-size: contain;
   transition: 0.3s;
   cursor: pointer;
-  background-image: url('assets/svg/fullscreen-open.svg');
+  background-image: url("assets/svg/fullscreen-open.svg");
 }
 .fullscreen:hover {
   background-color: rgba(255, 255, 255, 0.5);
 }
 :-webkit-full-screen .fullscreen {
-  background-image: url('assets/svg/fullscreen-exit.svg');
+  background-image: url("assets/svg/fullscreen-exit.svg");
 }
 .footer {
   border-top: 1px solid;
@@ -218,14 +233,14 @@ img {
   width: 120px;
   height: 45px;
   padding-left: 45px;
-  background-image: url('assets/svg/github.svg');
+  background-image: url("assets/svg/github.svg");
   background-size: 35px;
   background-repeat: no-repeat;
   background-position: left center;
   line-height: 45px;
   color: #cbd5de;
   font-size: 16px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   transition: 0.3s;
 }
 .github:hover {
@@ -234,10 +249,10 @@ img {
 .rss {
   display: block;
   position: relative;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   width: 86px;
   height: 32px;
-  background-image: url('assets/svg/rss.svg');
+  background-image: url("assets/svg/rss.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: left center;
