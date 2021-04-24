@@ -1,13 +1,12 @@
-const inputs = document.querySelectorAll(".filters input");
-// const outputs = document.querySelectorAll("output");
+const filters = document.querySelectorAll(".filters input");
 const resetBtn = document.querySelector(".btn-reset");
 const nextBtn = document.querySelector(".btn-next");
 const img = document.querySelector("img");
 
-inputs.forEach((input) => input.addEventListener("input", hendleUpdate));
+filters.forEach((input) => input.addEventListener("input", onFilterChange));
 resetBtn.addEventListener("click", onResetBtnClick);
 
-function hendleUpdate() {
+function onFilterChange() {
   const suffix = this.dataset.sizing || "";
   img.style.setProperty(`--${this.name}`, this.value + suffix);
 
@@ -16,21 +15,20 @@ function hendleUpdate() {
 }
 
 function onResetBtnClick() {
-  inputs.forEach((input) => {
-    input.value = input.defaultValue;
+  filters.forEach((filter) => {
+    filter.value = filter.defaultValue;
     const output = document.querySelector(
-      `input[name="${input.name}"] ~ output`
+      `input[name="${filter.name}"] ~ output`
     );
-    output.textContent = input.value;
+    output.textContent = filter.value;
   });
 
   img.style = "";
 }
 
-const date = new Date();
-const base =
+const BASE_URL =
   "https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/";
-let i = 0;
+let counter = 0;
 const images = [
   "01.jpg",
   "02.jpg",
@@ -55,16 +53,10 @@ const images = [
 
 nextBtn.addEventListener("click", onNextBtnClick);
 
-function viewBgImage(src) {
-  const image = new Image();
-  image.src = src;
-  image.onload = () => {
-    img.src = `${src}`;
-  };
-}
-
 function onNextBtnClick() {
-  const index = i % images.length;
+  const index = counter % images.length;
+
+  const date = new Date();
   const hours = date.getHours();
   let timeOfDay;
 
@@ -73,13 +65,16 @@ function onNextBtnClick() {
   if (hours >= 18 && hours <= 23) timeOfDay = "evening/";
   if (hours >= 0 && hours <= 5) timeOfDay = "night/";
 
-  const imageSrc = base + timeOfDay + images[index];
+  const imageSrc = `${BASE_URL}${timeOfDay}${images[index]}`;
 
-  viewBgImage(imageSrc);
-  i++;
+  createImage(imageSrc);
+  counter++;
+}
 
-  nextBtn.disabled = true;
-  setTimeout(function () {
-    nextBtn.disabled = false;
-  }, 200);
+function createImage(src) {
+  const image = new Image();
+  image.src = src;
+  image.onload = () => {
+    img.src = `${src}`;
+  };
 }
