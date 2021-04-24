@@ -4,7 +4,6 @@ const nextBtn = document.querySelector(".btn-next");
 const img = document.querySelector("img");
 
 filters.forEach((input) => input.addEventListener("input", onFilterChange));
-resetBtn.addEventListener("click", onResetBtnClick);
 
 function onFilterChange() {
   const suffix = this.dataset.sizing || "";
@@ -13,6 +12,10 @@ function onFilterChange() {
   const output = document.querySelector(`input[name="${this.name}"] ~ output`);
   output.textContent = this.value;
 }
+
+// reset button logic
+
+resetBtn.addEventListener("click", onResetBtnClick);
 
 function onResetBtnClick() {
   filters.forEach((filter) => {
@@ -24,7 +27,13 @@ function onResetBtnClick() {
   });
 
   img.style = "";
+
+  resetBtn.classList.add("btn-active");
+  nextBtn.classList.remove("btn-active");
+  loadLabel.classList.remove("btn-active");
 }
+
+// next button logic
 
 const BASE_URL =
   "https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/";
@@ -69,6 +78,10 @@ function onNextBtnClick() {
 
   createImage(imageSrc);
   counter++;
+
+  nextBtn.classList.add("btn-active");
+  resetBtn.classList.remove("btn-active");
+  loadLabel.classList.remove("btn-active");
 }
 
 function createImage(src) {
@@ -78,3 +91,25 @@ function createImage(src) {
     img.src = `${src}`;
   };
 }
+
+// load button logic
+
+const loadLabel = document.querySelector('label[for="btnInput"]');
+const loadInput = document.querySelector('input[type="file"]');
+
+loadInput.addEventListener("change", function (e) {
+  const file = loadInput.files[loadInput.files.length - 1];
+  console.log(loadInput.files);
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    img.src = reader.result;
+  };
+  reader.readAsDataURL(file);
+
+  e.currentTarget.value = "";
+
+  nextBtn.classList.remove("btn-active");
+  resetBtn.classList.remove("btn-active");
+  loadLabel.classList.add("btn-active");
+});
