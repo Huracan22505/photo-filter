@@ -41,9 +41,10 @@ function onResetBtnClick() {
 
   img.style = "";
 
-  resetBtn.classList.add("btn-active");
   nextBtn.classList.remove("btn-active");
   loadLabel.classList.remove("btn-active");
+  saveBtn.classList.remove("btn-active");
+  resetBtn.classList.add("btn-active");
 }
 
 // next button logic
@@ -92,9 +93,10 @@ function onNextBtnClick() {
   createImage(imageSrc);
   counter++;
 
-  nextBtn.classList.add("btn-active");
   resetBtn.classList.remove("btn-active");
   loadLabel.classList.remove("btn-active");
+  saveBtn.classList.remove("btn-active");
+  nextBtn.classList.add("btn-active");
 }
 
 function createImage(src) {
@@ -124,6 +126,7 @@ loadInput.addEventListener("change", function (e) {
 
   nextBtn.classList.remove("btn-active");
   resetBtn.classList.remove("btn-active");
+  saveBtn.classList.remove("btn-active");
   loadLabel.classList.add("btn-active");
 });
 
@@ -150,6 +153,11 @@ function drawImage() {
     link.click();
     link.delete;
   };
+
+  nextBtn.classList.remove("btn-active");
+  resetBtn.classList.remove("btn-active");
+  loadLabel.classList.remove("btn-active");
+  saveBtn.classList.add("btn-active");
 }
 
 // save button logic
