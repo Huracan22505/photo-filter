@@ -321,3 +321,9 @@ output {
     margin: 3px;
   }
 }
+
+/* canvas */
+
+canvas {
+  display: none;
+}

@@ -1,4 +1,5 @@
 const filters = document.querySelectorAll(".filters input");
+const outputs = document.querySelectorAll("output");
 const resetBtn = document.querySelector(".btn-reset");
 const nextBtn = document.querySelector(".btn-next");
 const img = document.querySelector("img");
@@ -22,7 +23,7 @@ function onFilterChange() {
   img.style.setProperty(`--${this.name}`, this.value + suffix);
 
   const output = document.querySelector(`input[name="${this.name}"] ~ output`);
-  output.textContent = this.value;
+  output.value = this.value;
 }
 
 // reset button logic
@@ -35,7 +36,7 @@ function onResetBtnClick() {
     const output = document.querySelector(
       `input[name="${filter.name}"] ~ output`
     );
-    output.textContent = filter.value;
+    output.value = filter.value;
   });
 
   img.style = "";
@@ -125,3 +126,34 @@ loadInput.addEventListener("change", function (e) {
   resetBtn.classList.remove("btn-active");
   loadLabel.classList.add("btn-active");
 });
+
+// canvas logic
+
+const canvas = document.querySelector("canvas");
+
+function drawImage() {
+  const image = new Image();
+  image.setAttribute("crossOrigin", "anonymous");
+  image.src = img.src;
+  image.onload = function () {
+    canvas.width = image.width;
+    canvas.height = image.height;
+    const ctx = canvas.getContext("2d");
+
+    ctx.filter = `blur(${outputs[0].value}px) invert(${outputs[1].value}%) sepia(${outputs[2].value}%) saturate(${outputs[3].value}%) hue-rotate(${outputs[4].value}deg)`;
+    console.log("image.onload -> ctx.filter", ctx.filter);
+    ctx.drawImage(image, 0, 0);
+
+    var link = document.createElement("a");
+    link.download = "download.png";
+    link.href = canvas.toDataURL();
+    link.click();
+    link.delete;
+  };
+}
+
+// save button logic
+
+const saveBtn = document.querySelector(".btn-save");
+
+saveBtn.addEventListener("click", drawImage);
