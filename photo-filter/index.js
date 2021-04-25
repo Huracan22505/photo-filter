@@ -2,6 +2,18 @@ const filters = document.querySelectorAll(".filters input");
 const resetBtn = document.querySelector(".btn-reset");
 const nextBtn = document.querySelector(".btn-next");
 const img = document.querySelector("img");
+const fullscreenBtn = document.querySelector(".fullscreen");
+
+// fullscreen button logic
+
+fullscreenBtn.addEventListener("click", () => {
+  const app = document.documentElement;
+
+  app.requestFullscreen();
+  document.exitFullscreen();
+});
+
+// filters change logic
 
 filters.forEach((input) => input.addEventListener("input", onFilterChange));
 
