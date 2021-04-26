@@ -144,7 +144,7 @@ function drawImage() {
     canvas.height = image.height;
     const ctx = canvas.getContext("2d");
 
-    ctx.filter = `blur(${outputs[0].value * 1.8}px) invert(${
+    ctx.filter = `blur(${outputs[0].value * 1.6}px) invert(${
       outputs[1].value
     }%) sepia(${outputs[2].value}%) saturate(${outputs[3].value}%) hue-rotate(${
       outputs[4].value
