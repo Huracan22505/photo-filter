@@ -138,12 +138,17 @@ function drawImage() {
   const image = new Image();
   image.setAttribute("crossOrigin", "anonymous");
   image.src = img.src;
+
   image.onload = function () {
     canvas.width = image.width;
     canvas.height = image.height;
     const ctx = canvas.getContext("2d");
 
-    ctx.filter = `blur(${outputs[0].value}px) invert(${outputs[1].value}%) sepia(${outputs[2].value}%) saturate(${outputs[3].value}%) hue-rotate(${outputs[4].value}deg)`;
+    ctx.filter = `blur(${outputs[0].value * 1.8}px) invert(${
+      outputs[1].value
+    }%) sepia(${outputs[2].value}%) saturate(${outputs[3].value}%) hue-rotate(${
+      outputs[4].value
+    }deg)`;
     console.log("image.onload -> ctx.filter", ctx.filter);
     ctx.drawImage(image, 0, 0);
 
