@@ -1,2 +1,1 @@
-# huracan22505-JSFE2021Q1
-Private repository for @huracan22505
+An application that allows you to add filters to an image and save the image with filters applied to it. The image can be loaded into the application from a computer or by url.
