@@ -1,3 +1,8 @@
+import { appRender } from "./app";
+import "./style.css";
+
+appRender();
+
 const filters = document.querySelectorAll(".filters input");
 const outputs = document.querySelectorAll("output");
 const resetBtn = document.querySelector(".btn-reset");

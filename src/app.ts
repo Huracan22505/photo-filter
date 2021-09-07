@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="assets/favicon.ico" rel="shortcut icon" />
-    <link href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;800&display=swap"
-      rel="stylesheet"
-    />
-    <link href="style.css" rel="stylesheet" />
-    <title>photo-filter</title>
-  </head>
-  <body>
+const appMarkup = `
     <header class="header">
       <h1 class="header-title">Photo-filter</h1>
     </header>
@@ -101,6 +86,9 @@
     </main>
     <button class="fullscreen openfullscreen"></button>
     <canvas></canvas>
-    <script src="./index.js"></script>
-  </body>
-</html>
+`;
+
+export const appRender = (): void => {
+  const appElement = document.getElementById('app') as HTMLDivElement;
+  appElement.insertAdjacentHTML('afterbegin', appMarkup);
+};
